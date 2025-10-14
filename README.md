@@ -46,7 +46,7 @@
 1. **Клонування репозиторію**
    ```bash
    git clone https://github.com/Randayy/django-cart-task.git
-   cd django-cart-api
+   cd djangocart
 
 2. **Створення віртуального середовища**
    ```bash
