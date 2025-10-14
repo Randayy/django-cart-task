@@ -8,11 +8,13 @@
         font-family: Arial;
         margin: 40px;
       }
+
       table {
         width: 80%;
         margin: 0 auto;
         border-collapse: collapse;
       }
+
       .product-image {
         width: 150px;
         height: 150px;
@@ -21,29 +23,53 @@
         display: block;
         margin: 0 auto;
       }
+
       th,
       td {
         padding: 10px;
         border: 1px solid #ccc;
         text-align: center;
       }
+
       h1 {
         text-align: center;
       }
+
       .total {
         font-weight: bold;
         font-size: 18px;
       }
+
+      /* --- КНОПКИ --- */
       .btn {
         display: inline-block;
-        background: #555;
+        background-color: #007bff;
         color: white;
         padding: 10px 20px;
-        border-radius: 5px;
+        border-radius: 6px;
         text-decoration: none;
         border: none;
         cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        min-width: 220px; /* однакова ширина */
+        transition: background-color 0.2s ease;
       }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+
+      .btn:active {
+        background-color: #004494;
+      }
+
+      /* Для <button>, щоб вигляд був ідентичним до <a> */
+      button.btn {
+        width: auto;
+      }
+
+      /* --- Кнопки кількості --- */
       .btn-small {
         background: #007bff;
         color: white;
@@ -53,12 +79,15 @@
         cursor: pointer;
         font-size: 16px;
       }
+
       .btn-small.minus {
         background: #ff9800;
       }
+
       .btn-small.plus {
         background: #4caf50;
       }
+
       .btn-delete {
         background: #d9534f;
         color: white;
@@ -67,6 +96,7 @@
         border-radius: 5px;
         cursor: pointer;
       }
+
       .cart-controls {
         display: flex;
         justify-content: center;
@@ -75,6 +105,7 @@
       }
     </style>
   </head>
+
   <body>
     <h1>Ваш кошик</h1>
 
@@ -86,9 +117,9 @@
         margin-bottom: 25px;
       "
     >
-      <a href="{% url 'product_list' %}" class="btn"
-        >⬅ Повернутись до каталогу</a
-      >
+      <a href="{% url 'product_list' %}" class="btn">
+        ⬅ Повернутись до каталогу
+      </a>
 
       <form
         action="{% url 'cart_clear' %}"
