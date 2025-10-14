@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ product.name }}</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background-color: #fafafa;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+      }
+
+      .price {
+        font-size: 22px;
+        color: #2e7d32;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .back {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #1976d2;
+        text-decoration: none;
+      }
+
+      .back:hover {
+        text-decoration: underline;
+      }
+
+      .category {
+        color: #555;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="{% url 'product_list' %}" class="back">← Назад до списку</a>
+
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+      {% endif %}
+
+      <h1>{{ product.name }}</h1>
+      <p class="category">Категорія: {{ product.category.name }}</p>
+      <p class="price">{{ product.price }} ₴</p>
+      <p>{{ product.description }}</p>
+
+      {% if product.available == True %}
+      <p style="color: green">Доступний</p>
+      <form
+        action="{% url 'cart_add' product.id %}"
+        method="post"
+        style="margin-top: 10px"
+      >
+        {% csrf_token %}
+        <button
+          type="submit"
+          style="
+            padding: 5px 10px;
+            background: #008cba;
+            color: white;
+            border: none;
+            border-radius: 5px;
+          "
+        >
+          Додати в кошик
+        </button>
+      </form>
+      {% else %}
+      <p style="color: red; font-weight: bold">Товар недоступний</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Кошик</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 40px;
+      }
+      table {
+        width: 80%;
+        margin: 0 auto;
+        border-collapse: collapse;
+      }
+      .product-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+        margin: 0 auto;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      .total {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      .btn {
+        display: inline-block;
+        background: #555;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-small {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .btn-small.minus {
+        background: #ff9800;
+      }
+      .btn-small.plus {
+        background: #4caf50;
+      }
+      .btn-delete {
+        background: #d9534f;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .cart-controls {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ваш кошик</h1>
+
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 25px;
+      "
+    >
+      <a href="{% url 'product_list' %}" class="btn"
+        >⬅ Повернутись до каталогу</a
+      >
+
+      <form
+        action="{% url 'cart_clear' %}"
+        method="post"
+        style="display: inline"
+      >
+        {% csrf_token %}
+        <button type="submit" class="btn">🧹 Очистити корзину</button>
+      </form>
+    </div>
+
+    {% if cart %}
+    <table>
+      <tr>
+        <th>Зображення</th>
+        <th>Продукт</th>
+        <th>Ціна</th>
+        <th>Кількість</th>
+        <th>Разом</th>
+        <th>Дії</th>
+      </tr>
+
+      {% for item in cart %}
+      <tr>
+        <td>
+          <img
+            src="{{ item.product.image.url }}"
+            alt="{{ item.product.name }}"
+            class="product-image"
+          />
+        </td>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.price }} ₴</td>
+
+        <td>
+          <div class="cart-controls">
+            <form
+              action="{% url 'cart_remove_single' item.product.id %}"
+              method="post"
+              style="display: inline"
+            >
+              {% csrf_token %}
+              <button type="submit" class="btn-small minus">➖</button>
+            </form>
+
+            <span>{{ item.quantity }}</span>
+
+            <form
+              action="{% url 'cart_add' item.product.id %}"
+              method="post"
+              style="display: inline"
+            >
+              {% csrf_token %}
+              <button type="submit" class="btn-small plus">➕</button>
+            </form>
+          </div>
+        </td>
+
+        <td>{{ item.total_price }} ₴</td>
+
+        <td>
+          <form
+            action="{% url 'cart_remove' item.product.id %}"
+            method="post"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">🗑 Видалити</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+
+      <tr class="total">
+        <td colspan="4">Загальна сума:</td>
+        <td colspan="2">{{ cart.get_total_price }} ₴</td>
+      </tr>
+    </table>
+
+    {% else %}
+    <p style="text-align: center">Ваш кошик порожній.</p>
+    {% endif %}
+  </body>
+</html>
