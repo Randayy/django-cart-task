@@ -4,10 +4,6 @@ from .models import Product
 from cart.cart import Cart
 from cart.models import Product
 from django.core.paginator import Paginator
-
-def index(request):
-    return HttpResponse("Привіт! Це мій перший Django-проєкт 🚀")
-
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 

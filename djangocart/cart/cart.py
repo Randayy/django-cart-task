@@ -1,7 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
 from cart.models import Product
-from django.shortcuts import render, redirect
 
 class Cart:
     def __init__(self, request):
@@ -19,10 +18,6 @@ class Cart:
         self.save()
         
     def remove_single(self, product):
-        """
-        Віднімає одну одиницю товару з кошика.
-        Якщо кількість стає 0 — товар видаляється.
-        """
         product_id = str(product.id)
         if product_id in self.cart:
             if self.cart[product_id]['quantity'] > 1:

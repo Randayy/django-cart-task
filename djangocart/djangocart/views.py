@@ -1,4 +1,4 @@
 from django.http import HttpResponse
 
 def start(request):
-    return HttpResponse("Привіт! Це тестове завдання")
+    return HttpResponse("Перейдіть на /shop")
