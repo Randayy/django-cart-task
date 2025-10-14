@@ -45,5 +45,4 @@
 
 1. **Клонування репозиторію**
    ```bash
-   git clone 
-   cd django-cart-api
+   git clone https://github.com/Randayy/django-cart-task.git
