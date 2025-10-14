@@ -84,7 +84,8 @@ DATABASES = {
         'NAME': 'cartdb',        
         'USER': 'admin',      
         'PASSWORD': 'admin', 
-        'HOST': 'localhost',   
+        'HOST': 'djangocart_db',   
+        # 'HOST': 'localhost',   
         'PORT': '5432',
     }
 }
