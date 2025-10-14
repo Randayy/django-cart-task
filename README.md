@@ -36,7 +36,7 @@
 - **Python 3.10+**
 - **Django 4.2+**
 - **Django REST Framework**
-- **SQLite** (або інша БД)
+- **PostgeSQL**
 - **HTML / CSS (Jinja templates)**
 
 ---
@@ -45,5 +45,5 @@
 
 1. **Клонування репозиторію**
    ```bash
-   git clone https://github.com/yourusername/django-cart-api.git
+   git clone 
    cd django-cart-api
