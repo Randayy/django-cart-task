@@ -14,8 +14,8 @@ build/
 
 # === Virtual environment ===
 venv/
-env/
-ENV/
+# env/
+# ENV/
 .venv/
 
 # === Django ===
@@ -23,7 +23,7 @@ ENV/
 *.pot
 *.pyc
 db.sqlite3
-media/
+# media/
 staticfiles/
 static/
 local_settings.py
