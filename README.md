@@ -46,6 +46,10 @@
 1. **Клонування репозиторію**
    ```bash
    git clone https://github.com/Randayy/django-cart-task.git
+
+2. **Перейти в папку з docker-compose**
+   ```bash
+   cd django-cart-task
    cd djangocart
 
 ## 📦 Встановлення без Docker
