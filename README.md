@@ -56,36 +56,6 @@
    ```bash
    docker compose up --build -d
 
-## 📦 Встановлення без Docker
-
-1. **Клонування репозиторію**
-   ```bash
-   git clone https://github.com/Randayy/django-cart-task.git
-   cd djangocart
-
-2. **Створення віртуального середовища**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # для macOS / Linux
-   venv\Scripts\activate     # для Windows
-   
-3. **Встановлення залежностей**
-   ```bash
-   pip install -r requirements.txt
-
-4. **Міграції бази даних**
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   
-5. **Cтворення суперюзера для адмінки**
-   ```bash
-   python manage.py createsuperuser
-
-6. **Запуск сервера**
-   ```bash
-   python manage.py runserver
-
 ## Перевірка роботи
 
 🌐 Головна сторінка: http://127.0.0.1:8000/
